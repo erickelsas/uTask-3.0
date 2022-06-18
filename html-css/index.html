@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>uText 3.0</title>
+</head>
+<body>
+
+    <header id="navbar">
+        <nav id="navbar-container">
+            <div id="navbar-items">
+                <div id="logo-container">
+                    <img src="./images/logo_white.svg" alt="Unect Logo" class="logo" id="logo-white">
+                    <img src="./images/logo_blue.svg" alt="Unect Logo" class="logo invisible" id="logo-blue">
+                </div>
+                <h1 id="uText">uText 3.0</h1>
+                <div id="dark-btn-container">
+                    <div id="darkmode-switcher">
+                        <input type="checkbox" id="dark-btn">
+                        <label for="dark-btn" id="label-dark">
+                            <span class="material-icons" id="light">light_mode</span>
+                            
+                            <span class="material-icons invisible" id="dark">dark_mode</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="frase-mobile">
+        <div id="frase-container">
+            <button id="frase-btn"">
+                <div id="frase-content">
+                    <div class ="shadow-frase">
+                        <div class="frase-logo-container">
+                            <span class="material-icons frase-logo">tips_and_updates</span>
+                        </div>
+                    </div>
+                    <h2 id="frase-txt">Frase do dia</h2>
+                </div>
+            </button>
+        </div>
+
+        <div class="modal" id="modal-fdia">
+            <div class="modal-tst">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <div class="fdia-title">
+                            <div class ="shadow-frase">
+                                <div class="frase-logo-container">
+                                    <span class="material-icons frase-logo">tips_and_updates</span>
+                                </div>
+                            </div>
+                            <h2 class="frase-txt-modal">Frase do dia</h2>
+                        </div>
+                            <span class="material-icons icon-circle close" id="close-fdia">close</span>
+                        </div>
+                    <p class="p-modal">Se você quiser um pedacinho do paraíso, acredite em Deus. Mas se você quer conquistar o mundo, acredite em você porque Deus já te deu tudo o que você precisa para você vencer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="frase-pc">
+        <div id="fdia-container">
+            <div>
+                <div class ="shadow-frase" id="fdia-logo-shadow">
+                    <div class="frase-logo-container" id="fdia-logo-container">
+                        <span class="material-icons frase-logo" id="fdia-logo">tips_and_updates</span>
+                    </div>
+                </div>
+            </div>
+            <div id="fdia-texto">
+                <h2 id="frasedia">Frase do dia</h2>
+                <p id="textodia">Se você quiser um pedacinho do paraíso, acredite em Deus. Mas se você quer conquistar o mundo, acredite em você porque Deus já te deu tudo o que você precisa para você vencer.</p>
+            </div> 
+        </div>
+    </section>
+
+    <section id="kanban">
+        <div id="kanban-container">
+            <input type="radio" name="bola" id="kanban-radio1" checked>
+            <input type="radio" name="bola" id="kanban-radio2">
+            <input type="radio" name="bola" id="kanban-radio3">
+            
+            <div id="kanban-centro">
+                <div>
+                    <span class="material-icons kanban-seta" id="seta-esquerda">navigate_before</span>
+                </div>
+                <div id="kanban-bg">
+                    <div class="carrossel">
+                        <div class="kanban" id="a-fazer">
+                            <div class="kanban-topo">
+                                <h3 class="kanban-text">A fazer</h3>
+                                <span class="material-icons icon-circle" id="show-modal-add">add</span>
+                            </div>
+                            <div class="kanban-campo" id="kanban-campo1">
+                                <ul class="tasks" id="tasks">
+                                </ul>
+                            </div>
+                        </div>    
+                        <div class="kanban" id="em-andamento">
+                            <div class="kanban-topo">
+                                <h3 class="kanban-text">Em andamento</h3>
+                            </div>
+                            <div class="kanban-campo" id="kanban-campo2"></div>
+                        </div>
+                        <div class="kanban" id="feito">
+                            <div class="kanban-topo">
+                                <h3 class="kanban-text">Feito</h3>
+                            </div>
+                            <div class="kanban-campo" id="kanban-campo3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="material-icons kanban-seta" id="seta-direita">navigate_next</span>
+                </div>
+            </div>
+
+            <div id="kanban-bottom">
+                <label for="kanban-radio1" class="radio-btn" id="label-radio1"></label>
+                <label for="kanban-radio2" class="radio-btn" id="label-radio2"></label>
+                <label for="kanban-radio3" class="radio-btn" id="label-radio3"></label>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-add">
+            <div class="modal-tst" id="modal-tst-add">
+                <div class="modal-container" id="modal-container-add">
+                    <div class="modal-header" id="modal-header-add">
+                        <div></div>
+                        <div id="nova-task-top">
+                            <h2>Nova Task</h2>
+                            <div id="traco-task"></div>
+                        </div>
+                        <span class="material-icons icon-circle close" id="close-modal-add">close</span>
+                    </div>
+                    <div id="forms">
+                        <div class="task-component" id="add-task-title">
+                            <label id="title">Título *</label>
+                            <input type="text" class="text-campo" name="title" id="title-campo" size="50">
+                        </div>
+                        <div class="task-component" id="add-task-desc">
+                            <label id="desc">Descrição</label>
+                            <textarea name="desc" class="text-campo" id="desc-campo" maxlength="150"></textarea>
+                        </div>
+                    <button id="criar-task">Criar task</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div id="footer-container">
+            <div class="footer-item">
+                <h3 class="footer-txt">© Processo de Trainee <b>Unect Jr.</b> 2022.1</h3>
+            </div>
+            <div class="footer-item">
+                <h3 class="footer-txt">Feito com</h3>
+                <span class="material-icons" id="coracao">favorite</span>
+                <h3>por Erick Freitas</h3>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>
