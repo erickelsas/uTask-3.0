@@ -102,6 +102,53 @@
                             </div>
                             <div class="kanban-campo" id="kanban-campo1">
                                 <ul class="tasks" id="tasks">
+                                    <li class="task">
+                                        <div class="template-task" id="task-name">
+                                            <div class="template-container">
+                                                <div class="template-text">
+                                                    <div class="header-task">
+                                                        <h2 class="title">${tarefa.title}</h2>
+                                                    </div>
+                    
+                                                    <div class="desc-task">
+                                                        <div class="desc-container disp-none-class">
+                                                            <div class="bottom-desc-container">
+                                                                <div class="ler-desc-container" id="ler-desc-container">
+                                                                    <div class="ler-desc-content" id="ler-desc-btn">
+                                                                        <p class="ler-desc">Ler descrição</p>
+                                                                        <span class="material-icons">expand_more</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                    
+                                                            <div class="esconder-desc-container disp-none-class" id="esconder-desc-container">
+                                                                <div class="esconder-desc-content" id="esconder-desc-btn">
+                                                                    <p class="esc-desc">Esconder descrição</p>
+                                                                    <span class="material-icons">expand_less</span>
+                                                                </div>
+                                                            </div>
+                                                            <p class="desc disp-none-class desc" id="desc">${tarefa.desc}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="icons-container">
+                                                    <div class="expand-container">
+                                                        <span class="material-icons expand-excluir">more_vert</span>
+                                                        <div class="excluir-container disp-none-class excluir">
+                                                            <div class="excluir-content">
+                                                                <span class="material-icons" id="excluir-icon">delete</span>
+                                                                <p id="excluir-txt">Excluir</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="navegadores">
+                                                        <span class="material-icons disp-none-class navigate navigate-before">navigate_before</span>
+                                                        <span class="material-icons navigate navigate-next">navigate_next</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>    

@@ -1,6 +1,6 @@
 window.tarefasFazer = [];
 window.tarefasFazendo = [];
-window.tarefasFeitas = [];
+window.tarefasFeito = [];
 
 document.getElementById("frase-btn").addEventListener("click", () => {
     document.getElementById("modal-fdia").classList.add("show-modal");
@@ -434,7 +434,7 @@ kbTasks[0].addEventListener("click", (e) => {
 
             window.tarefasFazendo.push(tarefa);
 
-            criaTarefa(tarefa, kbTasks[0]);
+            criaTarefa(tarefa, kbTasks[1]);
 
             ul.removeChild(li);
         }
@@ -454,7 +454,7 @@ kbTasks[0].addEventListener("click", (e) => {
 
             window.tarefasFazer.push(tarefa);
 
-            criaTarefa(tarefa, kbTasks[2]);
+            criaTarefa(tarefa, kbTasks[0]);
 
             ul.removeChild(li);
         }
