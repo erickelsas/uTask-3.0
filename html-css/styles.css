@@ -747,7 +747,7 @@ p{
 
 .desc{
     width: 80%;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--kanban-font);
 }
 
