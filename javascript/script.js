@@ -86,9 +86,9 @@ document.getElementById("criar-task").addEventListener("click", () => {
 });
 
 function criaTarefa(tarefa, lista){
-    let listaT = document.querySelector(".tasks");
+    let listaT = document.querySelectorAll(".tasks");
 
-    if(lista == listaT){
+    if(lista == listaT[0]){
         task = `<li class="task">
                     <div class="template-task" id="task-name">
                         <div class="template-container">
@@ -136,7 +136,7 @@ function criaTarefa(tarefa, lista){
                         </div>
                     </div>
                 </li>`
-    } else {
+    } else if (lista == listaT[1]) {
         task = `<li class="task">
                     <div class="template-task" id="task-name">
                         <div class="template-container">
@@ -179,6 +179,54 @@ function criaTarefa(tarefa, lista){
                                 <div class="navegadores">
                                     <span class="material-icons navigate navigate-before">navigate_before</span>
                                     <span class="material-icons navigate navigate-next">navigate_next</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>`
+    } else {
+        task = `<li class="task">
+                    <div class="template-task" id="task-name">
+                        <div class="template-container">
+                            <div class="template-text">
+                                <div class="header-task">
+                                    <h2 class="title title-feito">${tarefa.title}</h2>
+                                </div>
+
+                                <div class="desc-task">
+                                    <div class="desc-container disp-none-class">
+                                        <div class="bottom-desc-container">
+                                            <div class="ler-desc-container" id="ler-desc-container">
+                                                <div class="ler-desc-content" id="ler-desc-btn">
+                                                    <p class="ler-desc">Ler descrição</p>
+                                                    <span class="material-icons">expand_more</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="esconder-desc-container disp-none-class" id="esconder-desc-container">
+                                            <div class="esconder-desc-content" id="esconder-desc-btn">
+                                                <p class="esc-desc">Esconder descrição</p>
+                                                <span class="material-icons">expand_less</span>
+                                            </div>
+                                        </div>
+                                        <p class="desc disp-none-class desc" id="desc">${tarefa.desc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icons-container">
+                                <div class="expand-container">
+                                    <span class="material-icons expand-excluir">more_vert</span>
+                                    <div class="excluir-container disp-none-class excluir">
+                                        <div class="excluir-content">
+                                            <span class="material-icons" id="excluir-icon">delete</span>
+                                            <p id="excluir-txt">Excluir</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="navegadores">
+                                    <span class="material-icons navigate navigate-before">navigate_before</span>
+                                    <span class="material-icons navigate replay">replay</span>
                                 </div>
                             </div>
                         </div>
@@ -439,7 +487,7 @@ kbTasks[0].addEventListener("click", (e) => {
             ul.removeChild(li);
         }
 
-        if(e.target.classList.contains("navigate-next")){ //CLICK NO MODAL EXCLUIR
+        if(e.target.classList.contains("replay")){ //CLICK NO MODAL EXCLUIR
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
             nodes = Array.from(li.closest(".tasks").children);
@@ -482,3 +530,15 @@ kbTasks[0].addEventListener("click", (e) => {
         }
     });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const url = "https://murmuring-forest-23300.herokuapp.com/https://positive-vibes-api.herokuapp.com/quotes/random"
+
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+            fdia = document.querySelectorAll(".frasedodia");
+            fdia[0].innerHTML = data.data;
+            fdia[1].innerHTML = data.data;
+        })
+})
