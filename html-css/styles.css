@@ -99,7 +99,7 @@
     }
 
     #kanban-radio3:checked ~  #kanban-centro .carrossel{
-        margin-left: -201%;
+        margin-left: -202%;
         transition: 1s ease-in-out;
     }
 
@@ -619,6 +619,10 @@ p{
     font-size: 1.2rem;
     margin-top: 0.25rem;
     color: var(--kanban-font);
+}
+
+.expand-excluir-clicked{
+    color: var(--bola-checked-color);
 }
 
 .expand-excluir:hover{
