@@ -292,8 +292,10 @@ kbTasks[0].addEventListener("click", (e) => {
         if (e.target && e.target.classList.contains("expand-excluir")) { //CLICK NO EXPAND VERTICAL
             if(excluirModal.classList.contains("disp-none-class")){ //VERIFICA SE O MODAL ESTÁ ABERTO
                 excluirModal.classList.remove("disp-none-class");
+                e.target.classList.add("expand-excluir-clicked");
             } else{
                 excluirModal.classList.add("disp-none-class");
+                e.target.classList.remove("expand-excluir-clicked");
             }
         }
 
@@ -301,8 +303,9 @@ kbTasks[0].addEventListener("click", (e) => {
 
         if(teste.classList.contains("excluir-container")){ //CLICK NO MODAL EXCLUIR
             ul = e.target.closest(".tasks");
+
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             window.tarefasFazer.splice(idLi, 1);
@@ -311,10 +314,23 @@ kbTasks[0].addEventListener("click", (e) => {
             teste.classList.add("disp-none-class");
         }
 
+        if(!e.target.classList.contains("expand-excluir") && !teste.classList.contains("excluir-container")){
+            li = e.target.closest(".task");
+            excluirModal = li.firstElementChild.firstElementChild.lastElementChild.firstElementChild.lastElementChild
+
+            console.log(excluirModal.firstElementChild);
+            
+            if(!excluirModal.classList.contains("disp-none-class")){
+                excluirModal.previousElementSibling.classList.remove("expand-excluir-clicked");
+                excluirModal.classList.add("disp-none-class");
+            }
+        
+        }
+
         if(e.target.classList.contains("navigate-next")){ //CLICK NO MODAL EXCLUIR
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             tarefaRem = window.tarefasFazer.splice(idLi, 1);
@@ -350,6 +366,7 @@ kbTasks[0].addEventListener("click", (e) => {
             desc = teste.nextElementSibling
             desc.classList.add("disp-none-class");
         }
+
     });
 
     kbTasks[1].addEventListener("click", (e) => {
@@ -369,7 +386,7 @@ kbTasks[0].addEventListener("click", (e) => {
         if(teste.classList.contains("excluir-container")){ //CLICK NO MODAL EXCLUIR
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             window.tarefasFazendo.splice(idLi, 1);
@@ -378,10 +395,23 @@ kbTasks[0].addEventListener("click", (e) => {
             teste.classList.add("disp-none-class");
         }
 
+        if(!e.target.classList.contains("expand-excluir") && !teste.classList.contains("excluir-container")){
+            li = e.target.closest(".task");
+            excluirModal = li.firstElementChild.firstElementChild.lastElementChild.firstElementChild.lastElementChild
+
+            console.log(excluirModal.firstElementChild);
+            
+            if(!excluirModal.classList.contains("disp-none-class")){
+                excluirModal.previousElementSibling.classList.remove("expand-excluir-clicked");
+                excluirModal.classList.add("disp-none-class");
+            }
+        
+        }
+
         if(e.target.classList.contains("navigate-before")){
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             tarefaRem = window.tarefasFazendo.splice(idLi, 1);
@@ -401,7 +431,7 @@ kbTasks[0].addEventListener("click", (e) => {
         if(e.target.classList.contains("navigate-next")){ //CLICK NO MODAL EXCLUIR
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             tarefaRem = window.tarefasFazendo.splice(idLi, 1);
@@ -458,7 +488,7 @@ kbTasks[0].addEventListener("click", (e) => {
         if(teste.classList.contains("excluir-container")){ //CLICK NO MODAL EXCLUIR
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             window.tarefasFeito.splice(idLi, 1);
@@ -467,10 +497,23 @@ kbTasks[0].addEventListener("click", (e) => {
             teste.classList.add("disp-none-class");
         }
 
+        if(!e.target.classList.contains("expand-excluir") && !teste.classList.contains("excluir-container")){
+            li = e.target.closest(".task");
+            excluirModal = li.firstElementChild.firstElementChild.lastElementChild.firstElementChild.lastElementChild
+
+            console.log(excluirModal.firstElementChild);
+            
+            if(!excluirModal.classList.contains("disp-none-class")){
+                excluirModal.previousElementSibling.classList.remove("expand-excluir-clicked");
+                excluirModal.classList.add("disp-none-class");
+            }
+        
+        }
+
         if(e.target.classList.contains("navigate-before")){
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             tarefaRem = window.tarefasFeito.splice(idLi, 1);
@@ -490,7 +533,7 @@ kbTasks[0].addEventListener("click", (e) => {
         if(e.target.classList.contains("replay")){ //CLICK NO MODAL EXCLUIR
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
-            nodes = Array.from(li.closest(".tasks").children);
+            nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
             tarefaRem = window.tarefasFeito.splice(idLi, 1);
@@ -530,6 +573,8 @@ kbTasks[0].addEventListener("click", (e) => {
         }
     });
 
+
+//CONSUMINDO API
 document.addEventListener("DOMContentLoaded", () => {
     const url = "https://murmuring-forest-23300.herokuapp.com/https://positive-vibes-api.herokuapp.com/quotes/random"
 
@@ -538,7 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(response => response.json())
     .then(data => {
             fdia = document.querySelectorAll(".frasedodia");
-            fdia[0].innerHTML = data.data;
             fdia[1].innerHTML = data.data;
+            fdia[0].innerHTML = data.data;
         })
 })
