@@ -480,7 +480,7 @@ p{
 }
 
 #kanban{
-    margin-top: 2vh;
+    margin-top: 3vh;
     width: 100%;
 }
 
@@ -522,7 +522,7 @@ p{
 }
 
 .kanban-campo{
-    height: 52vh;
+    height: 48vh;
     border-radius: 0.625rem;
     background-color: var(--kanban-bg);
     overflow: auto;
