@@ -130,7 +130,7 @@ function criaTarefa(tarefa, lista){
                                 </div>
                                 <div class="navegadores">
                                     <span class="material-icons disp-none-class navigate navigate-before">navigate_before</span>
-                                    <span class="material-icons navigate navigate-next">navigate_next</span>
+                                    <span class="material-icons navigate navigate-next navegador-proximo">navigate_next</span>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@ function criaTarefa(tarefa, lista){
                                 </div>
                                 <div class="navegadores">
                                     <span class="material-icons navigate navigate-before">navigate_before</span>
-                                    <span class="material-icons navigate navigate-next">navigate_next</span>
+                                    <span class="material-icons navigate navigate-next navegador-proximo">navigate_next</span>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@ function criaTarefa(tarefa, lista){
                                 </div>
                                 <div class="navegadores">
                                     <span class="material-icons navigate navigate-before">navigate_before</span>
-                                    <span class="material-icons navigate replay">replay</span>
+                                    <span class="material-icons navigate replay navegador-proximo">replay</span>
                                 </div>
                             </div>
                         </div>
@@ -263,29 +263,9 @@ document.getElementById("seta-direita").addEventListener("click", () => {
     document.getElementById(`kanban-radio${x}`).checked = true;
 });
 
-/*document.getElementById("ler-desc-btn").addEventListener("click", () => {
-    const lerDesc = document.getElementById("ler-desc-container");
-    const esconderDesc = document.getElementById("esconder-desc-container");
-    const desc = document.getElementById("desc");
-    
-    lerDesc.classList.add("disp-none-class");
-    esconderDesc.classList.remove("disp-none-class");
-    desc.classList.remove("disp-none-class");
-});*/
-
-/*document.getElementById("esconder-desc-btn").addEventListener("click", () => {
-    const lerDesc = document.getElementById("ler-desc-container");
-    const esconderDesc = document.getElementById("esconder-desc-container");
-    const desc = document.getElementById("desc");
-
-    lerDesc.classList.remove("disp-none-class");
-    esconderDesc.classList.add("disp-none-class");
-    desc.classList.add("disp-none-class");
-});*/
-
 const kbTasks = document.querySelectorAll('.tasks');
 
-kbTasks[0].addEventListener("click", (e) => {
+const liEvents = (e, kb) => {
         noPai = e.target.parentNode;
         excluirModal = noPai.lastElementChild;
 
@@ -308,7 +288,14 @@ kbTasks[0].addEventListener("click", (e) => {
             nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
-            window.tarefasFazer.splice(idLi, 1);
+            if(kb == 0){
+                window.tarefasFazer.splice(idLi, 1);
+            } else if(kb == 1){
+                window.tarefasFazendo.splice(idLi, 1);
+            } else if(kb == 0) {
+                window.tarefasFeito.splice(idLi, 1);
+            }
+                
 
             ul.removeChild(li);
             teste.classList.add("disp-none-class");
@@ -317,8 +304,6 @@ kbTasks[0].addEventListener("click", (e) => {
         if(!e.target.classList.contains("expand-excluir") && !teste.classList.contains("excluir-container")){
             li = e.target.closest(".task");
             excluirModal = li.firstElementChild.firstElementChild.lastElementChild.firstElementChild.lastElementChild
-
-            console.log(excluirModal.firstElementChild);
             
             if(!excluirModal.classList.contains("disp-none-class")){
                 excluirModal.previousElementSibling.classList.remove("expand-excluir-clicked");
@@ -327,20 +312,70 @@ kbTasks[0].addEventListener("click", (e) => {
         
         }
 
-        if(e.target.classList.contains("navigate-next")){ //CLICK NO MODAL EXCLUIR
+        if(e.target.classList.contains("navigate-before")){
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
             nodes = Array.from(ul.children);
             idLi = nodes.indexOf(li);
 
-            tarefaRem = window.tarefasFazer.splice(idLi, 1);
+            if(kb == 1){
+                tarefaRem = window.tarefasFazendo.splice(idLi, 1);
 
-            tarefa = {title: `${tarefaRem[0].title}`,
-                      desc: `${tarefaRem[0].desc}`};
+                tarefa = {"title": `${tarefaRem[0].title}`,
+                          "desc": `${tarefaRem[0].desc}`};
+    
+                window.tarefasFazer.push(tarefa);
+            } else if(kb == 2){
+                tarefaRem = window.tarefasFeito.splice(idLi, 1);
 
-            window.tarefasFazendo.push(tarefa);
+                tarefa = {"title": `${tarefaRem[0].title}`,
+                          "desc": `${tarefaRem[0].desc}`};
+    
+                window.tarefasFazendo.push(tarefa);
+            }
 
-            criaTarefa(tarefa, kbTasks[1]);
+            criaTarefa(tarefa, kbTasks[kb-1]);
+
+            ul.removeChild(li);
+        }
+
+        if(e.target.classList.contains("navegador-proximo")){ //CLICK NO MODAL EXCLUIR
+            ul = e.target.closest(".tasks");
+            li = e.target.closest(".task");
+            nodes = Array.from(ul.children);
+            idLi = nodes.indexOf(li);
+
+            if(kb == 0){
+                tarefaRem = window.tarefasFazer.splice(idLi, 1);
+
+                tarefa = {title: `${tarefaRem[0].title}`,
+                          desc: `${tarefaRem[0].desc}`};
+    
+                window.tarefasFazendo.push(tarefa);
+            } else if (kb == 1) {
+                tarefaRem = window.tarefasFazendo.splice(idLi, 1);
+
+                tarefa = {title: `${tarefaRem[0].title}`,
+                          desc: `${tarefaRem[0].desc}`};
+    
+                window.tarefasFeito.push(tarefa);
+            } else if (kb == 2) {
+                tarefaRem = window.tarefasFeito.splice(idLi, 1);
+
+                tarefa = {title: `${tarefaRem[0].title}`,
+                          desc: `${tarefaRem[0].desc}`};
+    
+                window.tarefasFazer.push(tarefa);
+            }
+
+            
+            if(kb + 1 == 3){
+                kbProx = 0
+            } else {
+                kbProx = kb + 1;
+            }
+
+            criaTarefa(tarefa, kbTasks[kbProx]);
 
             ul.removeChild(li);
         }
@@ -366,216 +401,23 @@ kbTasks[0].addEventListener("click", (e) => {
             desc = teste.nextElementSibling
             desc.classList.add("disp-none-class");
         }
+} 
 
+kbTasks[0].addEventListener("click", (e) => {
+        liEvents(e, 0);
     });
 
     kbTasks[1].addEventListener("click", (e) => {
-        noPai = e.target.parentNode;
-        excluirModal = noPai.lastElementChild;
-
-        if (e.target && e.target.classList.contains("expand-excluir")) { //CLICK NO EXPAND VERTICAL
-            if(excluirModal.classList.contains("disp-none-class")){ //VERIFICA SE O MODAL ESTÁ ABERTO
-                excluirModal.classList.remove("disp-none-class");
-            } else{
-                excluirModal.classList.add("disp-none-class");
-            }
-        }
-
-        teste = noPai.parentNode;
-
-        if(teste.classList.contains("excluir-container")){ //CLICK NO MODAL EXCLUIR
-            ul = e.target.closest(".tasks");
-            li = e.target.closest(".task");
-            nodes = Array.from(ul.children);
-            idLi = nodes.indexOf(li);
-
-            window.tarefasFazendo.splice(idLi, 1);
-
-            ul.removeChild(li);
-            teste.classList.add("disp-none-class");
-        }
-
-        if(!e.target.classList.contains("expand-excluir") && !teste.classList.contains("excluir-container")){
-            li = e.target.closest(".task");
-            excluirModal = li.firstElementChild.firstElementChild.lastElementChild.firstElementChild.lastElementChild
-
-            console.log(excluirModal.firstElementChild);
-            
-            if(!excluirModal.classList.contains("disp-none-class")){
-                excluirModal.previousElementSibling.classList.remove("expand-excluir-clicked");
-                excluirModal.classList.add("disp-none-class");
-            }
-        
-        }
-
-        if(e.target.classList.contains("navigate-before")){
-            ul = e.target.closest(".tasks");
-            li = e.target.closest(".task");
-            nodes = Array.from(ul.children);
-            idLi = nodes.indexOf(li);
-
-            tarefaRem = window.tarefasFazendo.splice(idLi, 1);
-
-            console.log(tarefaRem);
-
-            tarefa = {"title": `${tarefaRem[0].title}`,
-                      "desc": `${tarefaRem[0].desc}`};
-
-            window.tarefasFazer.push(tarefa);
-
-            criaTarefa(tarefa, kbTasks[0]);
-
-            ul.removeChild(li);
-        }
-
-        if(e.target.classList.contains("navigate-next")){ //CLICK NO MODAL EXCLUIR
-            ul = e.target.closest(".tasks");
-            li = e.target.closest(".task");
-            nodes = Array.from(ul.children);
-            idLi = nodes.indexOf(li);
-
-            tarefaRem = window.tarefasFazendo.splice(idLi, 1);
-
-            console.log(tarefaRem);
-
-            tarefa = {"title": `${tarefaRem[0].title}`,
-                      "desc": `${tarefaRem[0].desc}`};
-
-            window.tarefasFeito.push(tarefa);
-
-            criaTarefa(tarefa, kbTasks[2]);
-
-            ul.removeChild(li);
-        }
-
-        if(teste.classList.contains("ler-desc-container")){ //CLICK NO LER DESC
-            teste.classList.add("disp-none-class");
-
-            pai = teste.parentNode
-            escondDesc = pai.nextElementSibling
-            escondDesc.classList.remove("disp-none-class");
-
-            desc = escondDesc.nextElementSibling
-            desc.classList.remove("disp-none-class");
-        }
-
-        if(teste.classList.contains("esconder-desc-container")){ //CLICK NO ESCONDER DESC
-            teste.classList.add("disp-none-class");
-
-            bottom = teste.previousElementSibling
-            lerDesc = bottom.firstElementChild
-            lerDesc.classList.remove("disp-none-class");
-
-            desc = teste.nextElementSibling
-            desc.classList.add("disp-none-class");
-        }
+        liEvents(e, 1);
     });
 
     kbTasks[2].addEventListener("click", (e) => {
-        noPai = e.target.parentNode;
-        excluirModal = noPai.lastElementChild;
-
-        if (e.target && e.target.classList.contains("expand-excluir")) { //CLICK NO EXPAND VERTICAL
-            if(excluirModal.classList.contains("disp-none-class")){ //VERIFICA SE O MODAL ESTÁ ABERTO
-                excluirModal.classList.remove("disp-none-class");
-            } else{
-                excluirModal.classList.add("disp-none-class");
-            }
-        }
-
-        teste = noPai.parentNode;
-
-        if(teste.classList.contains("excluir-container")){ //CLICK NO MODAL EXCLUIR
-            ul = e.target.closest(".tasks");
-            li = e.target.closest(".task");
-            nodes = Array.from(ul.children);
-            idLi = nodes.indexOf(li);
-
-            window.tarefasFeito.splice(idLi, 1);
-
-            ul.removeChild(li);
-            teste.classList.add("disp-none-class");
-        }
-
-        if(!e.target.classList.contains("expand-excluir") && !teste.classList.contains("excluir-container")){
-            li = e.target.closest(".task");
-            excluirModal = li.firstElementChild.firstElementChild.lastElementChild.firstElementChild.lastElementChild
-
-            console.log(excluirModal.firstElementChild);
-            
-            if(!excluirModal.classList.contains("disp-none-class")){
-                excluirModal.previousElementSibling.classList.remove("expand-excluir-clicked");
-                excluirModal.classList.add("disp-none-class");
-            }
-        
-        }
-
-        if(e.target.classList.contains("navigate-before")){
-            ul = e.target.closest(".tasks");
-            li = e.target.closest(".task");
-            nodes = Array.from(ul.children);
-            idLi = nodes.indexOf(li);
-
-            tarefaRem = window.tarefasFeito.splice(idLi, 1);
-
-            console.log(tarefaRem);
-
-            tarefa = {"title": `${tarefaRem[0].title}`,
-                      "desc": `${tarefaRem[0].desc}`};
-
-            window.tarefasFazendo.push(tarefa);
-
-            criaTarefa(tarefa, kbTasks[1]);
-
-            ul.removeChild(li);
-        }
-
-        if(e.target.classList.contains("replay")){ //CLICK NO MODAL EXCLUIR
-            ul = e.target.closest(".tasks");
-            li = e.target.closest(".task");
-            nodes = Array.from(ul.children);
-            idLi = nodes.indexOf(li);
-
-            tarefaRem = window.tarefasFeito.splice(idLi, 1);
-
-            console.log(tarefaRem);
-
-            tarefa = {"title": `${tarefaRem[0].title}`,
-                      "desc": `${tarefaRem[0].desc}`};
-
-            window.tarefasFazer.push(tarefa);
-
-            criaTarefa(tarefa, kbTasks[0]);
-
-            ul.removeChild(li);
-        }
-
-        if(teste.classList.contains("ler-desc-container")){ //CLICK NO LER DESC
-            teste.classList.add("disp-none-class");
-
-            pai = teste.parentNode
-            escondDesc = pai.nextElementSibling
-            escondDesc.classList.remove("disp-none-class");
-
-            desc = escondDesc.nextElementSibling
-            desc.classList.remove("disp-none-class");
-        }
-
-        if(teste.classList.contains("esconder-desc-container")){ //CLICK NO ESCONDER DESC
-            teste.classList.add("disp-none-class");
-
-            bottom = teste.previousElementSibling
-            lerDesc = bottom.firstElementChild
-            lerDesc.classList.remove("disp-none-class");
-
-            desc = teste.nextElementSibling
-            desc.classList.add("disp-none-class");
-        }
+        liEvents(e, 2);
     });
 
 
 //CONSUMINDO API
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
     const url = "https://murmuring-forest-23300.herokuapp.com/https://positive-vibes-api.herokuapp.com/quotes/random"
 
 
