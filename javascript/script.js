@@ -263,8 +263,6 @@ document.getElementById("seta-direita").addEventListener("click", () => {
     document.getElementById(`kanban-radio${x}`).checked = true;
 });
 
-const kbTasks = document.querySelectorAll('.tasks');
-
 const liEvents = (e, kb) => {
         noPai = e.target.parentNode;
         excluirModal = noPai.lastElementChild;
@@ -403,15 +401,17 @@ const liEvents = (e, kb) => {
         }
 } 
 
+
+const kbTasks = document.querySelectorAll('.tasks');
+
 kbTasks[0].addEventListener("click", (e) => {
         liEvents(e, 0);
     });
 
-    kbTasks[1].addEventListener("click", (e) => {
+kbTasks[1].addEventListener("click", (e) => {
         liEvents(e, 1);
     });
-
-    kbTasks[2].addEventListener("click", (e) => {
+kbTasks[2].addEventListener("click", (e) => {
         liEvents(e, 2);
     });
 

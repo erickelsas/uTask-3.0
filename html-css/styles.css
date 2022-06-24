@@ -354,6 +354,11 @@ p{
     transform: scale(1.1);
 }
 
+.main{
+    height: 75vh;
+    margin: auto;
+}
+
 #frase-mobile{
     min-height: 10vh;
     width: 100%;
