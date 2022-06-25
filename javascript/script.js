@@ -414,18 +414,28 @@ kbTasks[1].addEventListener("click", (e) => {
 kbTasks[2].addEventListener("click", (e) => {
         liEvents(e, 2);
     });
-
-
+    
 //CONSUMINDO API
 window.addEventListener("load", () => {
     const url = "https://murmuring-forest-23300.herokuapp.com/https://positive-vibes-api.herokuapp.com/quotes/random"
 
 
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
-            fdia = document.querySelectorAll(".frasedodia");
-            fdia[1].innerHTML = data.data;
-            fdia[0].innerHTML = data.data;
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }
+        throw new Error();
         })
-})
+    .then(data => {
+        fdia = document.querySelectorAll(".frasedodia");
+        fdia[1].innerHTML = data.data;
+        fdia[0].innerHTML = data.data;
+        })
+    .catch((error) => {
+        fdia = document.querySelectorAll(".frasedodia");
+        fraseDefault = "Se você quer um pedacinho do paraíso, acredite em Deus. Mas se você quer conquistar o mundo, acredite em você porque Deus já te deu tudo o que você precisa para você vencer."
+        fdia[1].innerHTML = fraseDefault;
+        fdia[0].innerHTML = fraseDefault;
+    })
+});
