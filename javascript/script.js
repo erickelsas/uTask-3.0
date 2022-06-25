@@ -267,8 +267,8 @@ const liEvents = (e, kb) => {
         noPai = e.target.parentNode;
         excluirModal = noPai.lastElementChild;
 
-        if (e.target && e.target.classList.contains("expand-excluir")) { //CLICK NO EXPAND VERTICAL
-            if(excluirModal.classList.contains("disp-none-class")){ //VERIFICA SE O MODAL ESTÁ ABERTO
+        if (e.target && e.target.classList.contains("expand-excluir")) {
+            if(excluirModal.classList.contains("disp-none-class")){
                 excluirModal.classList.remove("disp-none-class");
                 e.target.classList.add("expand-excluir-clicked");
             } else{
@@ -279,7 +279,7 @@ const liEvents = (e, kb) => {
 
         teste = noPai.parentNode;
 
-        if(teste.classList.contains("excluir-container")){ //CLICK NO MODAL EXCLUIR
+        if(teste.classList.contains("excluir-container")){
             ul = e.target.closest(".tasks");
 
             li = e.target.closest(".task");
@@ -337,7 +337,7 @@ const liEvents = (e, kb) => {
             ul.removeChild(li);
         }
 
-        if(e.target.classList.contains("navegador-proximo")){ //CLICK NO MODAL EXCLUIR
+        if(e.target.classList.contains("navegador-proximo")){
             ul = e.target.closest(".tasks");
             li = e.target.closest(".task");
             nodes = Array.from(ul.children);
