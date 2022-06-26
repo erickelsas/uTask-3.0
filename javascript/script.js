@@ -85,7 +85,7 @@ document.getElementById("criar-task").addEventListener("click", () => {
     document.getElementById("modal-add").classList.remove("show-modal");
 });
 
-function criaTarefa(tarefa, lista){
+const criaTarefa = (tarefa, lista) => {
     let listaT = document.querySelectorAll(".tasks");
 
     if(lista == listaT[0]){
